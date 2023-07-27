@@ -54,3 +54,18 @@ end
 #     .limit(10)
 # }
 # {"2.7.0":{"gc":"disable","time":0.0,"gc_count":0,"memory":"0 MB"}}
+
+
+# ============= Pluck instead of map =======================
+
+# Measure.run(gc: :disable) {
+#   Thing.where(col0: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+#     .map(&:id)
+# }
+# {"2.7.0":{"gc":"disable","time":0.56,"gc_count":0,"memory":"120 MB"}}
+
+# Measure.run(gc: :disable) {
+#   Thing.where(col0: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+#     .pluck(&:id)
+# }
+# {"2.7.0":{"gc":"disable","time":0.15,"gc_count":0,"memory":"30 MB"}}
